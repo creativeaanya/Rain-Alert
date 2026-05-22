@@ -1,3 +1,4 @@
+import os
 import smtplib
 import pandas
 import random
