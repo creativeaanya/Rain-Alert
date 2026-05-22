@@ -63,10 +63,10 @@ jobs:
             exit 1
           fi
 
-          if [ -f "birthdays.csv" ]; then
-            echo "birthdays.csv found"
+          if [ -f "54_countries.csv" ]; then
+            echo "54_countries.cvs found"
           else
-            echo "birthdays.csv not found!"
+            echo "54_countries.csv not found!"
             exit 1
           fi
 
