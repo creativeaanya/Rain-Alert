@@ -1,38 +1,38 @@
-# To run and test the code you need to update 4 places:
-# 1. Change MY_EMAIL/MY_PASSWORD to your own details.
-# 2. Go to your email provider and make it allow less secure apps.
-# 3. Update the SMTP ADDRESS to match your email provider.
-# 4. Update birthdays.csv to contain today's month and day.
-# See the solution video in the 100 Days of Python Course for explainations.
-
-
-from datetime import datetime
+import turtle
 import pandas
-import random
-import smtplib
-import os
 
-# import os and use it to get the Github repository secrets
-MY_EMAIL = os.environ.get("MY_EMAIL")
-MY_PASSWORD = os.environ.get("MY_PASSWORD")
+screen = turtle.Screen()
+screen.title("Africa Countries Game")
+image = "blank_countries_img.gif"
+turtle.addshape(image)
+turtle.shape(image)
 
-today = datetime.now()
-today_tuple = (today.month, today.day)
+# def get_mouse_click_coor(x, y):
+#     print(x, y)
+# turtle.onscreenclick(get_mouse_click_coor)
+# turtle.mainloop()
 
-data = pandas.read_csv("birthdays.csv")
-birthdays_dict = {(data_row["month"], data_row["day"])                  : data_row for (index, data_row) in data.iterrows()}
-if today_tuple in birthdays_dict:
-    birthday_person = birthdays_dict[today_tuple]
-    file_path = f"letter_templates/letter_{random.randint(1, 3)}.txt"
-    with open(file_path) as letter_file:
-        contents = letter_file.read()
-        contents = contents.replace("[NAME]", birthday_person["name"])
+data = pandas.read_csv("54_countries.csv")
+all_countries = data.country.to_list()
+guessed_countries = []
 
-    with smtplib.SMTP("YOUR EMAIL PROVIDER SMTP SERVER ADDRESS") as connection:
-        connection.starttls()
-        connection.login(MY_EMAIL, MY_PASSWORD)
-        connection.sendmail(
-            from_addr=MY_EMAIL,
-            to_addrs=birthday_person["email"],
-            msg=f"Subject:Happy Birthday!\n\n{contents}"
-        )
+while len(guessed_countries) < 50:
+    answer_country = screen.textinput(title=f"{len(guessed_countries)}/54 Countries Correct",
+                                      prompt="What's another country's name?").title()
+    if answer_country == "Exit":
+        missing_countries = []
+        for country in all_countries:
+            if country not in guessed_countries:
+                missing_countries.append(country)
+        new_data = pandas.DataFrame(missing_countries)
+        new_data.to_csv("countries_to_learn.csv")
+        break
+    if answer_country in all_countries:
+        guessed_countries.append(answer_country)
+        t = turtle.Turtle()
+        t.hideturtle()
+        t.penup()
+        country_data = data[data.country == answer_country]
+        t.goto(country_data.x.item(), country_data.y.item())
+        t.write(answer_country)
+
