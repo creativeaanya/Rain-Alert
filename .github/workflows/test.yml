@@ -66,7 +66,7 @@ jobs:
           if [ -f "quotes.csv" ]; then
             echo "quotes.csv found"
           else
-            echo "birthdays.csv not found!"
+            echo "quotes.csv not found!"
             exit 1
           fi
 
