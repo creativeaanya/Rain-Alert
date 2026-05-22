@@ -18,11 +18,11 @@ with open("quotes.txt", "r") as file_data:
 with smtplib.SMTP("smtp.mail.yahoo.com", port=587) as connection:
     if week_day == 1:
         connection.starttls()
-        connection.login(user=my_email, password=password)
+        connection.login(user=MY_EMAIL, password=MY_PASSWORD)
         connection.sendmail(
-            from_addr=my_email,
+            from_addr=MY_EMAIL,
             to_addrs="juniorkassehinjk@gmail.com",
-            msg=f"From: {my_email}\nSubject:Monday Motivation\n\n{random_quote}"
+            msg=f"From: {MY_EMAIL}\nSubject:Monday Motivation\n\n{random_quote}"
         )
 
 
