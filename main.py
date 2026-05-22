@@ -3,8 +3,8 @@ import pandas
 import random
 import datetime as dt
 
-my_email = "kassehinjunior@yahoo.com"
-password = "ywuwbllwaocrrjcc"
+MY_EMAIL = os.environ.get("MY_EMAIL")
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
 now = dt.datetime.now()
 week_day = now.weekday()
