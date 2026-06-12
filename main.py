@@ -1,4 +1,5 @@
 ##################### Normal Starting Project ######################
+import os
 import datetime as dt
 import smtplib
 import pandas as pd
@@ -62,8 +63,8 @@ letter_contents = letter_contents.replace(
 # HINT 2: Remember to call .starttls()
 # HINT 3: Remember to login to your email service with email/password. Make sure your security setting is set to allow less secure apps.
 # HINT 4: The message should have the Subject: Happy Birthday then after \n\n The Message Body.
-my_email = "jaspretsingh2004@gmail.com"
-password = "smmv crfi lfxv yvji"
+my_email = os.environ.get("MY_EMAIL")
+password = os.environ.get("MY_PASSWORD")
 with smtplib.SMTP("smtp.gmail.com", 587) as connection:
     connection.starttls()
     connection.login(my_email, password)
