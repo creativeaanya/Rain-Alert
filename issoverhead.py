@@ -8,6 +8,7 @@ MY_LONG = -0.127758 # Your longitude
 
 MY_EMAIL = os.environ.get("MY_EMAIL")
 PASSWORD = os.environ.get("MY_PASSWORD")
+PERSONAL = os.environ.get("REGULAR_EMAIL")
 
 response = requests.get(url="http://api.open-notify.org/iss-now.json")
 response.raise_for_status()
@@ -52,7 +53,7 @@ if iss_is_close() and is_dark():
         connection.starttls()
         connection.login(user=MY_EMAIL, password=PASSWORD)
         connection.sendmail(from_addr=MY_EMAIL,
-                            to_addrs="taylorgibson@msn.com",
+                            to_addrs=PERSONAL,
                             msg=f"Subject:ISS IS OVERHEAD\n\nISS is overhead! See if you can spot it!"
         )
 
