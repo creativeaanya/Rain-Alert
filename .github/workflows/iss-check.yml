@@ -1,4 +1,4 @@
-name: Every Minute
+name: ISS Check
 
 on:
   schedule:
