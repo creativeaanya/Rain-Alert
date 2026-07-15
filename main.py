@@ -6,8 +6,8 @@ MY_EMAIL = os.environ.get("MY_EMAIL")
 MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
 parameters = {
-    "lat": 46.350959, #33.3075,
-    "lon": -72.565083, #-111.8449,
+    "lat": 30.2672, #33.3075,
+    "lon": 97.7431, #-111.8449,
     "appid": "f2d69fab5eda3fa56be94debfc5188f9",
     "cnt": 4,
 }
