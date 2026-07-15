@@ -3,7 +3,7 @@ import smtplib
 import os
 
 MY_EMAIL = os.environ.get("MY_EMAIL")
-MY_PWD = os.environ.get("MY_PWD")
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
 parameters = {
     "lat": 46.350959, #33.3075,
@@ -23,7 +23,7 @@ for item in weather_id:
         email_response.raise_for_status()
         with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
             connection.starttls()
-            connection.login(user=MY_EMAIL, password=MY_PWD)
+            connection.login(user=MY_EMAIL, password=MY_PASSWORD)
             connection.sendmail(from_addr=MY_EMAIL, to_addrs="aanyatester@yahoo.com", msg="Subject: Rain alert!\n\nMake sure to bring an umbrella ☔.")
         break
         
@@ -37,5 +37,5 @@ for item in weather_id:
     # if will_rain:
     #    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
 #             connection.starttls()
-#             connection.login(user=MY_EMAIL, password=MY_PWD)
+#             connection.login(user=MY_EMAIL, password=MY_PASSWORD)
 #             connection.sendmail(from_addr=MY_EMAIL, to_addrs="aanyatester@yahoo.com", msg="Subject: Rain alert!\n\nMake sure to bring an umbrella ☔.")
