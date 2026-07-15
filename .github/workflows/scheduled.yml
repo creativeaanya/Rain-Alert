@@ -22,7 +22,11 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-
+    
+    env:
+      MY_EMAIL: ${{ secrets.MY_EMAIL }}
+      MY_PWD: ${{ secrets.MY_PWD }}
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
